@@ -14,6 +14,8 @@ namespace QueryBuilder
             _query = query;
         }
 
+        public string AsQuery() => _query.AsQuery();
+
         public string Where(Expression<Func<TEntity, bool>> predicate)
         {
             StringBuilder query = new StringBuilder();
