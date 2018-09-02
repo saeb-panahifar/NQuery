@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QueryBuilder
+﻿namespace QueryBuilder
 {
     public class Query
     {
+        public static string From<TEntity>()
+            where TEntity : EntityBase
+        {
+            var fromQuery = new FromQuery<TEntity>();
 
+            return fromQuery.AsQuery();
+        }
     }
 }
