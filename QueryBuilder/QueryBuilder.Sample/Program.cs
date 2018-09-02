@@ -7,7 +7,8 @@ namespace QueryBuilder.Sample
     {
         static void Main(string[] args)
         {
-            var queryResult = Query.From<Customer>();
+            var queryResult = Query.From<Customer>()
+                .Where(a => a.Id < 1 && a.Name == "ali");
 
             Console.WriteLine(queryResult);
 

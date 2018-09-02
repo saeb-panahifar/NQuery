@@ -2,12 +2,12 @@
 {
     public class Query
     {
-        public static string From<TEntity>()
+        public static IQueryExtender<TEntity> From<TEntity>()
             where TEntity : EntityBase
         {
             var fromQuery = new FromQuery<TEntity>();
 
-            return fromQuery.AsQuery();
+            return new QueryExtender<TEntity>(fromQuery);
         }
     }
 }
