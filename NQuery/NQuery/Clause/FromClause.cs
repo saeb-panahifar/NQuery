@@ -17,12 +17,12 @@ namespace NQuery
 
             query.Append(this.Name + " ");
 
-            query.AppendLine(this.TableAsString());
+            query.AppendLine(this.TableNameAsString());
 
             return query.ToString();
         }
 
-        private string TableAsString()
+        private string TableNameAsString()
         {
             return typeof(T).Name;
         }
