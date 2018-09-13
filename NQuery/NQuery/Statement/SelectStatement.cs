@@ -10,11 +10,11 @@ namespace NQuery
     {
         private SelectClause<T> selectClause;
 
-        private FromClause<T> fromClause;
+        private readonly FromClause<T> fromClause;
 
         private WhereClause<T> whereClause;
 
-        private GroupByClause<T, object>  groupByClause;
+        private GroupByClause<T, object> groupByClause;
 
         public SelectStatement()
         {
@@ -82,7 +82,7 @@ namespace NQuery
             return this;
         }
 
-        public  ISelectGroupableQuery<T> Where(Expression<Func<T, bool>> expression)
+        public ISelectGroupableQuery<T> Where(Expression<Func<T, bool>> expression)
         {
             whereClause = new WhereClause<T>(expression);
 
