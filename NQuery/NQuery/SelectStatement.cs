@@ -6,22 +6,23 @@ using System.Text;
 
 namespace NQuery
 {
-    public class SelectStatement<T> : Statement, ISelectStatement
+    public class SelectStatement<T> : Statement, ISelectQuery<T>
     {
         private SelectClause<T> selectClause;
         private FromClause<T> fromClause;
+        private WhereClause<T> whereClause;
 
         public SelectStatement()
         {
             fromClause = new FromClause<T>();
         }
 
-        public Statement SelectAll()
+        public ISelectQuery<T> SelectAll()
         {
             selectClause = new SelectClause<T>();
             return this;
         }
-        public ISelectStatement Select<TResult>(Expression<Func<T, TResult>> selector)
+        public ISelectQuery<T> Select<TResult>(Expression<Func<T, TResult>> selector)
         {
             Expression expression = selector.Body;
 
@@ -40,8 +41,9 @@ namespace NQuery
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();
-            query.Append(selectClause.ToString());
-            query.AppendLine(fromClause.ToString());
+            query.Append(selectClause?.ToString());
+            query.Append(fromClause?.ToString());
+            query.Append(whereClause?.ToString());
             return query.ToString();
         }
 
@@ -54,6 +56,18 @@ namespace NQuery
         public Statement Top(int number)
         {
             selectClause.Top(number, false);
+            return this;
+        }
+
+        public ISelectQuery<T> Distinct()
+        {
+            selectClause.Distinct();
+            return this;
+        }
+
+        public  ISelectQuery<T> Where(Expression<Func<T, bool>> expression)
+        {
+            whereClause = new WhereClause<T>(expression);
             return this;
         }
     }

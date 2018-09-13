@@ -1,5 +1,4 @@
-﻿using NQuery;
-using System;
+﻿using System;
 
 
 namespace NQuery.Sample
@@ -18,7 +17,10 @@ namespace NQuery.Sample
 
             var queryResult = Query
                 .From<Customer>()
-                .Select(a => new { a.Id, a.LastName }).Top(10, true);
+                .Select(a => new { a.FirstName })
+                .Where(a => a.Id == 1 && a.LastName == "Paul")
+                .Distinct()
+                .Top(10);
 
             Console.WriteLine(queryResult.ToString());
 

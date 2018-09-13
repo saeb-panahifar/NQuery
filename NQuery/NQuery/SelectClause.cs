@@ -9,6 +9,7 @@ namespace NQuery
         public override string Name => "select";
         private string _columns;
         private string _top;
+        private string _distinct;
 
         public SelectClause()
         {
@@ -39,10 +40,16 @@ namespace NQuery
             _top = "top (" + number + ")" + (percent == true ? " percent " : "");
         }
 
+        public void Distinct()
+        {
+            _distinct = "distinct";
+        }
+
+
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();
-            query.Append(this.Name + " " + _top + " ");
+            query.Append(this.Name + " " + _distinct + " " + _top + " ");
             query.AppendLine(this._columns);
 
             return query.ToString();

@@ -42,12 +42,14 @@
   <ItemGroup>
     <Compile Include="Clause.cs" />
     <Compile Include="FromClause.cs" />
-    <Compile Include="ISelectStatement.cs" />
+    <Compile Include="ISelectQuery.cs" />
+    <Compile Include="ISelectFilterQuery.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="SelectClause.cs" />
     <Compile Include="SelectStatement.cs" />
     <Compile Include="Statement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhereClause.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
