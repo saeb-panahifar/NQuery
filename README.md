@@ -26,7 +26,38 @@ select Id, FirstName, LastName
 from Customer
  
 ```
+### Example 2:
 
+```cs
+public class Customer
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+    
+var queryResult = Query.From<Customer>().Select(a => new { a.Id, a.LastName });
 
+select Id, LastName
+from Customer
+ 
+```
+
+### Example 3:
+
+```cs
+public class Customer
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+    
+ var queryResult = Query.From<Customer>().Select(a => new { a.Id }).Top(10);
+
+select top (10) Id
+from Customer
+ 
+```
   
   
