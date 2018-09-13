@@ -14,6 +14,8 @@ namespace NQuery
 
         private WhereClause<T> whereClause;
 
+        private GroupByClause<T, object>  groupByClause;
+
         public SelectStatement()
         {
             fromClause = new FromClause<T>();
@@ -54,6 +56,8 @@ namespace NQuery
 
             query.Append(whereClause?.ToString());
 
+            query.Append(groupByClause?.ToString());
+
             return query.ToString();
         }
 
@@ -78,9 +82,16 @@ namespace NQuery
             return this;
         }
 
-        public  ISelectQuery<T> Where(Expression<Func<T, bool>> expression)
+        public  ISelectGroupableQuery<T> Where(Expression<Func<T, bool>> expression)
         {
             whereClause = new WhereClause<T>(expression);
+
+            return this;
+        }
+
+        public ISelectQuery<T> GroupBy(Expression<Func<T, object>> selector)
+        {
+            groupByClause = new GroupByClause<T, object>(selector);
 
             return this;
         }

@@ -5,6 +5,6 @@ namespace NQuery
 {
     public interface ISelectFilterQuery<T>
     {
-        ISelectQuery<T> Where(Expression<Func<T, bool>> expression);
+        ISelectGroupableQuery<T> Where(Expression<Func<T, bool>> expression);
     }
 }

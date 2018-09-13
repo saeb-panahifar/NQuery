@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Clause\Clause.cs" />
     <Compile Include="Clause\FromClause.cs" />
+    <Compile Include="Clause\GroupByClause.cs" />
+    <Compile Include="Statement\ISelectGroupableQuery.cs" />
     <Compile Include="Statement\ISelectQuery.cs" />
     <Compile Include="Statement\ISelectFilterQuery.cs" />
     <Compile Include="Query.cs" />

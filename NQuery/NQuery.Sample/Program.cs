@@ -19,6 +19,7 @@ namespace NQuery.Sample
                 .From<Customer>()
                 .Select(a => new { a.FirstName })
                 .Where(a => a.Id == 1 && a.LastName == "Paul")
+                .GroupBy(a => new { a.FirstName })
                 .Distinct()
                 .Top(10);
 
