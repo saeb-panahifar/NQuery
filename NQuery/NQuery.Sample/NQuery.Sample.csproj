@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QueryBuilder\NQuery.csproj">
+    <ProjectReference Include="..\NQuery\NQuery.csproj">
       <Project>{773d84e1-7203-4be5-b7ad-c7d1774bd1a6}</Project>
       <Name>NQuery</Name>
     </ProjectReference>
