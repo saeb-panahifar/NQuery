@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NQuery", "QueryBuilder\NQuery.csproj", "{773D84E1-7203-4BE5-B7AD-C7D1774BD1A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryBuilder.Sample", "QueryBuilder.Sample\QueryBuilder.Sample.csproj", "{3F1AA01F-B848-4DBD-9439-4A7D5B193DDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NQuery.Sample", "QueryBuilder.Sample\NQuery.Sample.csproj", "{3F1AA01F-B848-4DBD-9439-4A7D5B193DDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
