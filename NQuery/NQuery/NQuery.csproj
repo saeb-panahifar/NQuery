@@ -40,16 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clause.cs" />
-    <Compile Include="FromClause.cs" />
-    <Compile Include="ISelectQuery.cs" />
-    <Compile Include="ISelectFilterQuery.cs" />
+    <Compile Include="Clause\Clause.cs" />
+    <Compile Include="Clause\FromClause.cs" />
+    <Compile Include="Statement\ISelectQuery.cs" />
+    <Compile Include="Statement\ISelectFilterQuery.cs" />
     <Compile Include="Query.cs" />
-    <Compile Include="SelectClause.cs" />
-    <Compile Include="SelectStatement.cs" />
-    <Compile Include="Statement.cs" />
+    <Compile Include="Clause\SelectClause.cs" />
+    <Compile Include="Statement\SelectStatement.cs" />
+    <Compile Include="Statement\Statement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WhereClause.cs" />
+    <Compile Include="Clause\WhereClause.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
