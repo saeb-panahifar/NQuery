@@ -33,6 +33,15 @@ namespace QueryBuilder
             return properyName.Aggregate((s1, s2) => s1 + ", " + s2);
         }
 
+
+        public string AsQuery(string properyName)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine(_select + " " + properyName);
+            query.Append(_from + " " + _tableName);
+            return query.ToString();
+        }
+
         public string AsQuery()
         {
             StringBuilder query = new StringBuilder();
@@ -40,5 +49,6 @@ namespace QueryBuilder
             query.Append(_from + " " + _tableName);
             return query.ToString();
         }
+
     }
 }

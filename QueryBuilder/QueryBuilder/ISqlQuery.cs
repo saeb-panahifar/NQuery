@@ -9,5 +9,6 @@ namespace QueryBuilder
     public interface ISqlQuery<TEntity>
     {
         string AsQuery();
+        string AsQuery(string properites);
     }
 }
