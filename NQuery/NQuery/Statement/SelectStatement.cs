@@ -6,7 +6,11 @@ using System.Text;
 
 namespace NQuery
 {
-    public class SelectStatement<T> : Statement, ISelectQuery<T>
+    public class SelectStatement<T> : Statement, 
+        ISelectQuery<T>,
+        ISelectFilterQuery<T>,
+        ISelectOrderableQuery<T>,
+        ISelectGroupableQuery<T>
     {
         private SelectClause<T> selectClause;
 
@@ -14,20 +18,22 @@ namespace NQuery
 
         private WhereClause<T> whereClause;
 
-        private GroupByClause<T, object> groupByClause;
+        private GroupByClause<T> groupByClause;
+
+        private OrderByClause<T> orderByClause;
 
         public SelectStatement()
         {
             fromClause = new FromClause<T>();
         }
 
-        public ISelectQuery<T> SelectAll()
+        public ISelectFilterQuery<T> SelectAll()
         {
             selectClause = new SelectClause<T>();
 
             return this;
         }
-        public ISelectQuery<T> Select<TResult>(Expression<Func<T, TResult>> selector)
+        public ISelectFilterQuery<T> Select<TResult>(Expression<Func<T, TResult>> selector)
         {
             Expression expression = selector.Body;
 
@@ -44,6 +50,7 @@ namespace NQuery
 
             selectClause = new SelectClause<T>(columns);
 
+            
             return this;
         }
         public override string ToString()
@@ -57,6 +64,8 @@ namespace NQuery
             query.Append(whereClause?.ToString());
 
             query.Append(groupByClause?.ToString());
+
+            query.Append(orderByClause?.ToString());
 
             return query.ToString();
         }
@@ -82,6 +91,14 @@ namespace NQuery
             return this;
         }
 
+
+        public ISelectOrderableQuery<T> GroupBy(Expression<Func<T, object>> selector)
+        {
+            groupByClause = new GroupByClause<T>(selector);
+
+            return this;
+        }
+
         public ISelectGroupableQuery<T> Where(Expression<Func<T, bool>> expression)
         {
             whereClause = new WhereClause<T>(expression);
@@ -89,11 +106,12 @@ namespace NQuery
             return this;
         }
 
-        public ISelectQuery<T> GroupBy(Expression<Func<T, object>> selector)
+        public ISelectQuery<T> OrderBy(Expression<Func<T, object>> selector)
         {
-            groupByClause = new GroupByClause<T, object>(selector);
+            orderByClause = new OrderByClause<T>(selector);
 
             return this;
         }
+
     }
 }

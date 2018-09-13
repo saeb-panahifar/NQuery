@@ -43,7 +43,9 @@
     <Compile Include="Clause\Clause.cs" />
     <Compile Include="Clause\FromClause.cs" />
     <Compile Include="Clause\GroupByClause.cs" />
+    <Compile Include="Clause\OrderByClause.cs" />
     <Compile Include="Statement\ISelectGroupableQuery.cs" />
+    <Compile Include="Statement\ISelectOrderableQuery.cs" />
     <Compile Include="Statement\ISelectQuery.cs" />
     <Compile Include="Statement\ISelectFilterQuery.cs" />
     <Compile Include="Query.cs" />

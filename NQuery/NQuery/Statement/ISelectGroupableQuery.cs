@@ -3,8 +3,8 @@ using System.Linq.Expressions;
 
 namespace NQuery
 {
-    public interface ISelectGroupableQuery<T>
+    public interface ISelectGroupableQuery<T> : ISelectOrderableQuery<T>
     {
-        ISelectQuery<T> GroupBy(Expression<Func<T, object>> selector);
+        ISelectOrderableQuery<T> GroupBy(Expression<Func<T, object>> selector);
     }
 }

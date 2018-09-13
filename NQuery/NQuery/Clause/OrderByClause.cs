@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace NQuery
 {
-    public class GroupByClause<T> : Clause
+    public class OrderByClause<T> : Clause
     {
-        public override string Name => "group by ";
+        public override string Name => "order by ";
 
         private string _columns;
 
-        public GroupByClause(Expression<Func<T, object>> selector)
+        public OrderByClause(Expression<Func<T, object>> selector)
         {
             Expression expression = selector.Body;
 
@@ -39,6 +39,5 @@ namespace NQuery
 
             return query.ToString();
         }
-
     }
 }
