@@ -1,8 +1,8 @@
-﻿using QueryBuilder;
+﻿using NQuery;
 using System;
 
 
-namespace QueryBuilder.Sample
+namespace NQuery.Sample
 {
     public class Customer
     {

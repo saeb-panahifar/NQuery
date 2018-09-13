@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace QueryBuilder
+namespace NQuery
 {
     public class SelectClause<T> : Clause
     {

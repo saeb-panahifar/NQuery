@@ -1,4 +1,4 @@
-﻿namespace QueryBuilder
+﻿namespace NQuery
 {
     public static class Query
     {

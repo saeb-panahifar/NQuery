@@ -7,8 +7,8 @@
     <ProjectGuid>{773D84E1-7203-4BE5-B7AD-C7D1774BD1A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QueryBuilder</RootNamespace>
-    <AssemblyName>QueryBuilder</AssemblyName>
+    <RootNamespace>NQuery</RootNamespace>
+    <AssemblyName>NQuery</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

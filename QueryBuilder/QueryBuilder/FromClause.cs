@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace QueryBuilder
+namespace NQuery
 {
     public class FromClause<T> : Clause
     {

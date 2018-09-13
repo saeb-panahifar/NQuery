@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QueryBuilder\QueryBuilder.csproj">
+    <ProjectReference Include="..\QueryBuilder\NQuery.csproj">
       <Project>{773d84e1-7203-4be5-b7ad-c7d1774bd1a6}</Project>
-      <Name>QueryBuilder</Name>
+      <Name>NQuery</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
