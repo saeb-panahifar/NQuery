@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Clause.cs" />
     <Compile Include="FromClause.cs" />
+    <Compile Include="ISelectStatement.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="SelectClause.cs" />
     <Compile Include="SelectStatement.cs" />

@@ -18,7 +18,7 @@ namespace QueryBuilder.Sample
 
             var queryResult = Query
                 .From<Customer>()
-                .Select(a => new { a.Id, a.LastName });
+                .Select(a => new { a.Id, a.LastName }).Top(10, true);
 
             Console.WriteLine(queryResult.ToString());
 

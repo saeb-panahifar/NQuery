@@ -6,9 +6,8 @@ using System.Text;
 
 namespace QueryBuilder
 {
-    public class SelectStatement<T> : Statement
+    public class SelectStatement<T> : Statement, ISelectStatement
     {
-
         private SelectClause<T> selectClause;
         private FromClause<T> fromClause;
 
@@ -22,7 +21,7 @@ namespace QueryBuilder
             selectClause = new SelectClause<T>();
             return this;
         }
-        public Statement Select<TResult>(Expression<Func<T, TResult>> selector)
+        public ISelectStatement Select<TResult>(Expression<Func<T, TResult>> selector)
         {
             Expression expression = selector.Body;
 
@@ -44,6 +43,18 @@ namespace QueryBuilder
             query.Append(selectClause.ToString());
             query.AppendLine(fromClause.ToString());
             return query.ToString();
+        }
+
+        public Statement Top(int number, bool percent)
+        {
+            selectClause.Top(number, percent);
+            return this;
+        }
+
+        public Statement Top(int number)
+        {
+            selectClause.Top(number, false);
+            return this;
         }
     }
 }

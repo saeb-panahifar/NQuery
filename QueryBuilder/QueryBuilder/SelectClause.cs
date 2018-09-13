@@ -8,6 +8,7 @@ namespace QueryBuilder
     {
         public override string Name => "select";
         private string _columns;
+        private string _top;
 
         public SelectClause()
         {
@@ -19,7 +20,7 @@ namespace QueryBuilder
             _columns = columns;
         }
 
-        public string ColumnAsString()
+        private string ColumnAsString()
         {
             var properties = typeof(T).GetProperties();
 
@@ -33,18 +34,19 @@ namespace QueryBuilder
             return properyName.Aggregate((s1, s2) => s1 + ", " + s2);
         }
 
+        public void Top(int number, bool percent)
+        {
+            _top = "top (" + number + ")" + (percent == true ? " percent " : "");
+        }
+
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();
-            query.Append(this.Name + " ");
+            query.Append(this.Name + " " + _top + " ");
             query.AppendLine(this._columns);
 
             return query.ToString();
         }
     }
 
-    public class Column
-    {
-
-    }
 }
