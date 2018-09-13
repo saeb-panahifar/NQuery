@@ -59,5 +59,26 @@ select top (10) Id
 from Customer
  
 ```
-  
+
+### Example 4:
+
+```cs
+public class Customer
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+    
+    var queryResult = Query.From<Customer>()
+                .Select(a => new { a.FirstName })
+                .Where(a => a.Id == 1 && a.LastName == "Paul")
+                .Distinct()
+                .Top(10);
+
+select distinct top (10) FirstName
+from Customer
+where ((Id='1') AND (LastName='Paul'))
+ 
+```
   
