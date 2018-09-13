@@ -7,8 +7,11 @@ namespace NQuery
     public class SelectClause<T> : Clause
     {
         public override string Name => "select";
+
         private string _columns;
+
         private string _top;
+
         private string _distinct;
 
         public SelectClause()
@@ -45,11 +48,12 @@ namespace NQuery
             _distinct = "distinct";
         }
 
-
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();
+
             query.Append(this.Name + " " + _distinct + " " + _top + " ");
+
             query.AppendLine(this._columns);
 
             return query.ToString();

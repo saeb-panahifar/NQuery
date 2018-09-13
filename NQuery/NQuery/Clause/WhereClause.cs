@@ -7,11 +7,11 @@ namespace NQuery
     public class WhereClause<T> : Clause
     {
         public override string Name => "where";
+
         private string _whereAsString;
 
         public WhereClause()
         {
-
         }
 
         public WhereClause(Expression<Func<T, bool>> expression)

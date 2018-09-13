@@ -9,7 +9,9 @@ namespace NQuery
     public class SelectStatement<T> : Statement, ISelectQuery<T>
     {
         private SelectClause<T> selectClause;
+
         private FromClause<T> fromClause;
+
         private WhereClause<T> whereClause;
 
         public SelectStatement()
@@ -20,6 +22,7 @@ namespace NQuery
         public ISelectQuery<T> SelectAll()
         {
             selectClause = new SelectClause<T>();
+
             return this;
         }
         public ISelectQuery<T> Select<TResult>(Expression<Func<T, TResult>> selector)
@@ -27,13 +30,16 @@ namespace NQuery
             Expression expression = selector.Body;
 
             var members = ((NewExpression)selector.Body).Members;
+
             List<string> properites = new List<string>();
+
             foreach (var member in members)
             {
                 properites.Add(member.Name);
             }
 
             string columns = properites.Aggregate((x1, x2) => x1 + ", " + x2);
+
             selectClause = new SelectClause<T>(columns);
 
             return this;
@@ -41,33 +47,41 @@ namespace NQuery
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();
+
             query.Append(selectClause?.ToString());
+
             query.Append(fromClause?.ToString());
+
             query.Append(whereClause?.ToString());
+
             return query.ToString();
         }
 
         public Statement Top(int number, bool percent)
         {
             selectClause.Top(number, percent);
+
             return this;
         }
 
         public Statement Top(int number)
         {
             selectClause.Top(number, false);
+
             return this;
         }
 
         public ISelectQuery<T> Distinct()
         {
             selectClause.Distinct();
+
             return this;
         }
 
         public  ISelectQuery<T> Where(Expression<Func<T, bool>> expression)
         {
             whereClause = new WhereClause<T>(expression);
+
             return this;
         }
     }
