@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using System.Linq;
+using NQuery.DataAnnotations;
 
 namespace NQuery
 {
@@ -24,7 +26,11 @@ namespace NQuery
 
         private string TableNameAsString()
         {
-            return typeof(T).Name;
+            var attributes = typeof(T).GetCustomAttributes(false);
+
+            var tableMap = attributes.FirstOrDefault(attr => attr.GetType() == typeof(TableMap));
+
+            return tableMap != null ? ((TableMap)tableMap).Name : typeof(T).Name;
         }
     }
 }

@@ -33,26 +33,14 @@ namespace NQuery
 
             return this;
         }
-        public ISelectFilterQuery<T> Select<TResult>(Expression<Func<T, TResult>> selector)
+        public ISelectFilterQuery<T> Select(Expression<Func<T, object>> selector)
         {
-            Expression expression = selector.Body;
 
-            var members = ((NewExpression)selector.Body).Members;
-
-            List<string> properites = new List<string>();
-
-            foreach (var member in members)
-            {
-                properites.Add(member.Name);
-            }
-
-            string columns = properites.Aggregate((x1, x2) => x1 + ", " + x2);
-
-            selectClause = new SelectClause<T>(columns);
-
+            selectClause = new SelectClause<T>(selector);
             
             return this;
         }
+
         public override string ToString()
         {
             StringBuilder query = new StringBuilder();

@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using NQuery.DataAnnotations;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace NQuery
 {
+    public delegate IEnumerable<T> PropertyFetch<T>();
+
     public class SelectClause<T> : Clause
     {
         public override string Name => "select";
@@ -16,23 +22,40 @@ namespace NQuery
 
         public SelectClause()
         {
-            _columns = ColumnAsString();
+            _columns = ColumnNamesAsString(typeof(T).GetProperties());
         }
 
-        public SelectClause(string columns)
+        public SelectClause(Expression<Func<T, object>> selector)
         {
-            _columns = columns;
-        }
+            Expression expression = selector.Body;
 
-        private string ColumnAsString()
-        {
-            var properties = typeof(T).GetProperties();
+            var members = ((NewExpression)selector.Body).Members;
 
             List<string> properyName = new List<string>();
 
-            foreach (var item in properties)
+            foreach (MemberInfo item in members)
             {
-                properyName.Add(item.Name);
+                var columnMap = Attribute.GetCustomAttribute(selector.Parameters[0].Type.GetProperty(item.Name), typeof(ColumnMap));
+
+                var name = columnMap != null ? ((ColumnMap)columnMap).Name : item.Name;
+
+                properyName.Add(name);
+            }
+
+            _columns= properyName.Aggregate((s1, s2) => s1 + ", " + s2);
+        }
+
+        private string ColumnNamesAsString(MemberInfo[] properites)
+        {
+            List<string> properyName = new List<string>();
+
+            foreach (MemberInfo item in properites)
+            {
+                var columnMap = item.GetCustomAttribute<ColumnMap>();
+
+                var name = columnMap != null ? (columnMap).Name : item.Name;
+
+                properyName.Add(name);
             }
 
             return properyName.Aggregate((s1, s2) => s1 + ", " + s2);

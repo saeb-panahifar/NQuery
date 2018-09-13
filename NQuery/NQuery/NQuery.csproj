@@ -44,6 +44,7 @@
     <Compile Include="Clause\FromClause.cs" />
     <Compile Include="Clause\GroupByClause.cs" />
     <Compile Include="Clause\OrderByClause.cs" />
+    <Compile Include="DataAnnotations\ColumnMap.cs" />
     <Compile Include="Statement\ISelectGroupableQuery.cs" />
     <Compile Include="Statement\ISelectOrderableQuery.cs" />
     <Compile Include="Statement\ISelectQuery.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Statement\Statement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clause\WhereClause.cs" />
+    <Compile Include="DataAnnotations\TableMap.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

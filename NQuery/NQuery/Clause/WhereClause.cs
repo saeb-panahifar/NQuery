@@ -52,6 +52,7 @@ namespace NQuery
             if (left is MemberExpression)
             {
                 var leftMem = left as MemberExpression;
+
                 value = string.Format("({0}{1}'{2}')", leftMem.Member.Name, equalty, "{0}");
             }
             if (right is ConstantExpression)
