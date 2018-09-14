@@ -34,8 +34,8 @@ var queryResult = Query.From<Customer>();
 queryResult.ToString();
 
 //T-SQL
-select Id, FirstName, LastName
-from Customer
+select id, firstName, lastName
+from customer
  
 ```
 ### Example 2:
@@ -46,8 +46,7 @@ var queryResult = Query.From<Customer>().Select(a => new { a.Id, a.LastName });
 queryResult.ToString();
 
 //T-SQL
-select I
-d, LastName
+select id, lastName
 from Customer
  ```
 ### Example 3:
@@ -58,8 +57,8 @@ var queryResult = Query.From<Customer>().Select(a => new { a.Id }).Top(10);
 queryResult.ToString();
 
 //T-SQL
-select top (10) Id
-from Customer
+select top (10) id
+from customer
 ```
 
 ### Example 4:
@@ -74,9 +73,9 @@ var queryResult = Query.From<Customer>()
 queryResult.ToString();
 
 //T-SQL
-select distinct top (10) FirstName
-from Customer
-where ((Id='1') AND (LastName='Paul'))
+select distinct top (10) firstName
+from customer
+where ((id='1') AND (lastName='Paul'))
  ```
   
 ### Example 5:
@@ -93,9 +92,9 @@ var queryResult = Query
 queryResult.ToString();
                 
 //T-SQL                
-select distinct top (10) FirstName
-from Customer
-where ((Id='1') AND (LastName='Paul'))
+select distinct top (10) firstName
+from customer
+where ((id='1') AND (lastName='Paul'))
 order by FirstName
 ```
 
@@ -114,11 +113,11 @@ var queryResult = Query
 queryResult.ToString();               
 
 //T-SQL
-select distinct top (10) FirstName
-from Customer
-where ((Id='1') AND (LastName='Paul'))
-group by FirstName
-order by Id
+select distinct top (10) firstName
+from customer
+where ((id='1') AND (lastName='Paul'))
+group by firstName
+order by id
 
 
 ```
