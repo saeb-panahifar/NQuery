@@ -137,3 +137,23 @@ order by Id
 
 
 ```
+
+### Example 7:
+
+```cs
+public class Customer
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+    
+    var queryResult = Query
+                .From<Customer>()
+                .Select(x => new { Id = Func.Sum(x.Id) });
+                
+                
+select   sum(id)
+from customer
+
+```
