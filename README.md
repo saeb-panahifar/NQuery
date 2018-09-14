@@ -8,20 +8,32 @@ NQuery supports complex queries, such as nested conditions, selection from SubQu
 
 
 ## Quick Examples
+
+Entity:
+```cs
+ [TableMap("customer")]
+ public class Customer
+ {
+        [ColumnMap("id")]
+        public string Id { get; set; }
+        [ColumnMap("firstName")]
+        public string FirstName { get; set; }
+        [ColumnMap("lastName")]
+        public string LastName { get; set; }
+        [ColumnMap("age")]
+        public string Age { get; set; }
+ }
+
+```
 ### Example 1:
 
+
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query.From<Customer>();
 queryResult.ToString();
 
-
+//T-SQL
 select Id, FirstName, LastName
 from Customer
  
@@ -29,49 +41,31 @@ from Customer
 ### Example 2:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query.From<Customer>().Select(a => new { a.Id, a.LastName });
 queryResult.ToString();
 
-select Id, LastName
+//T-SQL
+select I
+d, LastName
 from Customer
- 
-```
-
+ ```
 ### Example 3:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query.From<Customer>().Select(a => new { a.Id }).Top(10);
 queryResult.ToString();
 
+//T-SQL
 select top (10) Id
 from Customer
- 
 ```
 
 ### Example 4:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query.From<Customer>()
                 .Select(a => new { a.FirstName })
                 .Where(a => a.Id == 1 && a.LastName == "Paul")
@@ -79,22 +73,16 @@ var queryResult = Query.From<Customer>()
                 .Top(10);
 queryResult.ToString();
 
+//T-SQL
 select distinct top (10) FirstName
 from Customer
 where ((Id='1') AND (LastName='Paul'))
- 
-```
+ ```
   
 ### Example 5:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query
                 .From<Customer>()
                 .Select(a => new { a.FirstName })
@@ -104,25 +92,17 @@ var queryResult = Query
                 .Top(10);
 queryResult.ToString();
                 
-                
+//T-SQL                
 select distinct top (10) FirstName
 from Customer
 where ((Id='1') AND (LastName='Paul'))
 order by FirstName
-
-
- 
 ```
+
 ### Example 6:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query
                 .From<Customer>()
                 .Select(a => new { a.FirstName })
@@ -131,8 +111,9 @@ var queryResult = Query
                 .OrderBy(a => new { a.Id })
                 .Distinct()
                 .Top(10);
- queryResult.ToString();               
-                
+queryResult.ToString();               
+
+//T-SQL
 select distinct top (10) FirstName
 from Customer
 where ((Id='1') AND (LastName='Paul'))
@@ -141,21 +122,14 @@ order by Id
 
 
 ```
-
 ### Example 7:
 
 ```cs
-public class Customer
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-}
-    
+//NQuery
 var queryResult = Query.From<Customer>().Select(x => new { Id = Func.Sum(x.Id) });
 queryResult.ToString();                
-                
+
+//T-SQL
 select sum(id)
 from customer
-
 ```
