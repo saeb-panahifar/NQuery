@@ -152,9 +152,7 @@ public class Customer
     public string LastName { get; set; }
 }
     
-var queryResult = Query
-                .From<Customer>()
-                .Select(x => new { Id = Func.Sum(x.Id) });
+var queryResult = Query.From<Customer>().Select(x => new { Id = Func.Sum(x.Id) });
 queryResult.ToString();                
                 
 select sum(id)
