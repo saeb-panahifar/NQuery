@@ -45,6 +45,7 @@
     <Compile Include="Clause\GroupByClause.cs" />
     <Compile Include="Clause\OrderByClause.cs" />
     <Compile Include="DataAnnotations\ColumnMap.cs" />
+    <Compile Include="Func.cs" />
     <Compile Include="Statement\ISelectGroupableQuery.cs" />
     <Compile Include="Statement\ISelectOrderableQuery.cs" />
     <Compile Include="Statement\ISelectQuery.cs" />

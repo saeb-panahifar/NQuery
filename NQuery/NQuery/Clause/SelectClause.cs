@@ -27,22 +27,40 @@ namespace NQuery
 
         public SelectClause(Expression<Func<T, object>> selector)
         {
-            Expression expression = selector.Body;
-
-            var members = ((NewExpression)selector.Body).Members;
+            var arguments = ((NewExpression)selector.Body).Arguments;
 
             List<string> properyName = new List<string>();
 
-            foreach (MemberInfo item in members)
+            foreach (Expression item in arguments)
             {
-                var columnMap = Attribute.GetCustomAttribute(selector.Parameters[0].Type.GetProperty(item.Name), typeof(ColumnMap));
+                if (item is MethodCallExpression)
+                {
+                    var method = ((MethodCallExpression)item).Method;
+                    var argument = ((MemberExpression)((MethodCallExpression)item).Arguments.First());
 
-                var name = columnMap != null ? ((ColumnMap)columnMap).Name : item.Name;
+                    var columnMap = Attribute.GetCustomAttribute(selector.Parameters[0].Type.GetProperty(argument.Member.Name), typeof(ColumnMap));
 
-                properyName.Add(name);
+                    var name = columnMap != null ? ((ColumnMap)columnMap).Name : method.Name;
+
+                    object[] _stringMethodParams = new object[] { name };
+                    var invokeName = method.Invoke(null, _stringMethodParams).ToString();
+
+                    properyName.Add(invokeName);
+
+                }
+                else if (item is MemberExpression)
+                {
+                    var x = ((MemberExpression)item).Member;
+                    var columnMap = Attribute.GetCustomAttribute(selector.Parameters[0].Type.GetProperty(x.Name), typeof(ColumnMap));
+
+                    var name = columnMap != null ? ((ColumnMap)columnMap).Name : x.Name;
+
+                    properyName.Add(name);
+                }
+
             }
 
-            _columns= properyName.Aggregate((s1, s2) => s1 + ", " + s2);
+            _columns = properyName.Aggregate((s1, s2) => s1 + ", " + s2);
         }
 
         private string ColumnNamesAsString(MemberInfo[] properites)
