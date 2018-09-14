@@ -41,7 +41,7 @@ from customer
  
 ```
 ### Example 2:
--Specifies the columns to be returned by the query.
+- Specifies the columns to be returned by the query.
 ```cs
 //NQuery
 var queryResult = Query.From<Customer>().Select(a => new { a.Id, a.LastName });
