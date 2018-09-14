@@ -37,6 +37,7 @@ public class Customer
 }
     
 var queryResult = Query.From<Customer>().Select(a => new { a.Id, a.LastName });
+queryResult.ToString();
 
 select Id, LastName
 from Customer
@@ -53,7 +54,8 @@ public class Customer
     public string LastName { get; set; }
 }
     
- var queryResult = Query.From<Customer>().Select(a => new { a.Id }).Top(10);
+var queryResult = Query.From<Customer>().Select(a => new { a.Id }).Top(10);
+queryResult.ToString();
 
 select top (10) Id
 from Customer
@@ -70,11 +72,12 @@ public class Customer
     public string LastName { get; set; }
 }
     
-    var queryResult = Query.From<Customer>()
+var queryResult = Query.From<Customer>()
                 .Select(a => new { a.FirstName })
                 .Where(a => a.Id == 1 && a.LastName == "Paul")
                 .Distinct()
                 .Top(10);
+queryResult.ToString();
 
 select distinct top (10) FirstName
 from Customer
@@ -92,13 +95,14 @@ public class Customer
     public string LastName { get; set; }
 }
     
- var queryResult = Query
+var queryResult = Query
                 .From<Customer>()
                 .Select(a => new { a.FirstName })
                 .Where(a => a.Id == 1 && a.LastName == "Paul")
                 .GroupBy(a => new { a.FirstName })
                 .Distinct()
                 .Top(10);
+queryResult.ToString();
                 
                 
 select distinct top (10) FirstName
@@ -119,7 +123,7 @@ public class Customer
     public string LastName { get; set; }
 }
     
-            var queryResult = Query
+var queryResult = Query
                 .From<Customer>()
                 .Select(a => new { a.FirstName })
                 .Where(a => a.Id == 1 && a.LastName == "Paul")
@@ -127,7 +131,7 @@ public class Customer
                 .OrderBy(a => new { a.Id })
                 .Distinct()
                 .Top(10);
-                
+ queryResult.ToString();               
                 
 select distinct top (10) FirstName
 from Customer
@@ -148,12 +152,12 @@ public class Customer
     public string LastName { get; set; }
 }
     
-    var queryResult = Query
+var queryResult = Query
                 .From<Customer>()
                 .Select(x => new { Id = Func.Sum(x.Id) });
+queryResult.ToString();                
                 
-                
-select   sum(id)
+select sum(id)
 from customer
 
 ```
