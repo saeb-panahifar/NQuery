@@ -40,7 +40,7 @@ namespace NQuery
 
                     var columnMap = Attribute.GetCustomAttribute(selector.Parameters[0].Type.GetProperty(argument.Member.Name), typeof(ColumnMap));
 
-                    var name = columnMap != null ? ((ColumnMap)columnMap).Name : method.Name;
+                    var name = columnMap != null ? ((ColumnMap)columnMap).Name : argument.Member.Name;
 
                     object[] _stringMethodParams = new object[] { name };
                     var invokeName = method.Invoke(null, _stringMethodParams).ToString();
