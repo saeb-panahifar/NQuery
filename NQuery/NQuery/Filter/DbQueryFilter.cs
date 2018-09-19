@@ -8,7 +8,9 @@ namespace NQuery.Filter
     public class DbQueryFilter : ExpressionVisitor
     {
         private readonly Dictionary<ExpressionType, string> _logicalOperators;
+
         private readonly Dictionary<Type, Func<object, string>> _typeConverters;
+
         private readonly StringBuilder _queryStringBuilder;
 
         public DbQueryFilter()
@@ -41,7 +43,9 @@ namespace NQuery.Filter
         public string AsQuery(LambdaExpression predicate)
         {
             Visit(predicate.Body);
+
             var query = _queryStringBuilder.ToString();
+
             _queryStringBuilder.Clear();
 
             return query;
@@ -65,22 +69,26 @@ namespace NQuery.Filter
         protected override Expression VisitMember(MemberExpression node)
         {
             _queryStringBuilder.Append(node.Member.Name);
+
             return node;
         }
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
             _queryStringBuilder.Append(GetValue(node.Value));
+
             return node;
         }
 
         private string GetValue(object input)
         {
             var type = input.GetType();
+
             if (_typeConverters.ContainsKey(type))
                 return _typeConverters[type](input);
             else
                 return input.ToString();
+
         }
     }
 
