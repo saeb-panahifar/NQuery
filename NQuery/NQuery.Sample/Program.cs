@@ -2,14 +2,13 @@
 
 namespace NQuery.Sample
 {
-
     class Program
     {
         static void Main(string[] args)
         {
             var queryResult = Query
-                .From<Customer>()
-                .Select(x => new { Id = Func.Sum(x.Id) });
+                .From<Customer>().Where(a => a.Id == 10 && a.LastName == "paul");
+               
 
 
             Console.WriteLine(queryResult.ToString());
