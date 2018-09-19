@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
 namespace NQuery
 {
-    public class SelectStatement<T> : Statement, 
+    public class SelectStatement<T> : Statement,
+        ISelectableQuery<T>,
         ISelectQuery<T>,
         ISelectFilterQuery<T>,
         ISelectOrderableQuery<T>,
@@ -27,17 +26,17 @@ namespace NQuery
             fromClause = new FromClause<T>();
         }
 
-        public ISelectFilterQuery<T> SelectAll()
+        public ISelectQuery<T> SelectAll()
         {
             selectClause = new SelectClause<T>();
 
             return this;
         }
-        public ISelectFilterQuery<T> Select(Expression<Func<T, object>> selector)
+        public ISelectQuery<T> Select(Expression<Func<T, object>> selector)
         {
 
             selectClause = new SelectClause<T>(selector);
-            
+
             return this;
         }
 

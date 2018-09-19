@@ -34,8 +34,7 @@ namespace NQuery.Filter
             _typeConverters = new Dictionary<Type, Func<object, string>>
             {
                 [typeof(string)] = x => $"'{x}'",
-                [typeof(DateTime)] =
-              x => $"datetime'{((DateTime)x).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}'",
+                [typeof(DateTime)] = x => $"datetime'{((DateTime)x).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}'",
                 [typeof(bool)] = x => x.ToString().ToLower()
             };
 

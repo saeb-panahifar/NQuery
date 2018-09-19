@@ -1,5 +1,7 @@
 ﻿namespace NQuery
 {
+
+
     public interface ISelectQuery<T>
     {
         Statement Top(int number);

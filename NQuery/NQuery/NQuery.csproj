@@ -47,6 +47,7 @@
     <Compile Include="DataAnnotations\ColumnMap.cs" />
     <Compile Include="Filter\DbQueryFilter.cs" />
     <Compile Include="Func.cs" />
+    <Compile Include="Statement\ISelectableQuery.cs" />
     <Compile Include="Statement\ISelectGroupableQuery.cs" />
     <Compile Include="Statement\ISelectOrderableQuery.cs" />
     <Compile Include="Statement\ISelectQuery.cs" />
