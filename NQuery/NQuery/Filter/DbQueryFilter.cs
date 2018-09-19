@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Linq;
 
 namespace NQuery.Filter
 {
@@ -39,6 +40,43 @@ namespace NQuery.Filter
             };
 
         }
+
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            var argument = node.Arguments.FirstOrDefault();
+
+            var value = argument?.ToString();
+            string name = string.Empty;
+
+            if (node.Object.NodeType == ExpressionType.MemberAccess)
+            {
+                name = ((MemberExpression)(node.Object)).Member.Name;
+            }
+
+            switch (node.Method.Name.ToLower())
+            {
+                case "startswith":
+                    _queryStringBuilder.Append($"( {name} like N'{value.Replace("\"", "")}%' )");
+                    break;
+                case "endswith":
+                    _queryStringBuilder.Append($"( {name} like N'%{value.Replace("\"", "")}' )");
+                    break;
+                case "contains":
+                    _queryStringBuilder.Append($"( {name} like N'%{value.Replace("\"", "")}%' )");
+                    break;
+                case "tolower":
+                    _queryStringBuilder.Append($"{node.Object.ToString().ToLower()}");
+                    break;
+                case "toupper":
+                    _queryStringBuilder.Append($"{node.Object.ToString().ToUpper()}");
+                    break;
+                default:
+                    break;
+            }
+
+            return node;
+        }
+
 
         public string AsQuery(LambdaExpression predicate)
         {

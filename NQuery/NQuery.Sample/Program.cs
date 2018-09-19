@@ -7,10 +7,8 @@ namespace NQuery.Sample
         static void Main(string[] args)
         {
             var queryResult = Query
-                .From<Customer>().Where(a => a.Id == 10 && a.LastName == "paul");
+                .From<Customer>().Where(a => a.FirstName == "paul".ToUpper() && a.Id > 10); 
                
-
-
             Console.WriteLine(queryResult.ToString());
 
             Console.ReadLine();
