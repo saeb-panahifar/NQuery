@@ -1,6 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ioub2tjn0qusdfum?svg=true)](https://ci.appveyor.com/project/saeb-panahifar/nquery)
 
-# NQuery
+# An light query API for C#.Net developers.
 
 NQuery has an expressive API. it follows a clean naming convention, which is very similar to the SQL syntax.
 
